@@ -1,8 +1,9 @@
 class RubyGemsPage < SitePrism::Page
   set_url "/"
 
-  element :search_field, "input#home_query"
+  element :aprove_btn, "#ctl00_BodyContent_lnkVote_1"
   element :gem_name, "a.t-link--black"
+  element :play_btn, "#ctl00_BodyContent_FlashPlayer1container_jwplayer_display_icon"
 
 end
 
@@ -13,16 +14,12 @@ module BaseElementsAndMethods
     @rgp.load
   end
 
-  def entering_text
-    @rgp.search_field.set "acceptance_testing"
+  def aprove_btn_click
+    @rgp.aprove_btn.click
   end
 
-  def press_enter_button
-    @rgp.search_field.send_keys :enter
-  end
-
-  def visible_gem_name
-    expect(@rgp.gem_name).to have_text("acceptance_testing")
+  def play_btn_click
+    @rgp.play_btn.click
   end
 
 end
