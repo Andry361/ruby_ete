@@ -17,23 +17,19 @@ module InitUtils
      args = %w(--screen 0 1920x1080x24--screenshot  --window-size=1920,1080 --allow-insecure-localhost --ignore-certificate-errors
                --allow-failed-policy-fetch-for-test --disable-popup-blocking --enable-automation --start-maximized --disable-web-security
                --disable-prompt-on-repost --disable-extensions-file-access-check --disable-default-apps)
-
-               caps = Selenium::WebDriver::Remote::Capabilities.chrome("chromeOptions" => {"binary" => "C:/Users/User/Desktop/Tor Browser/Browser/firefox.exe"})
      Capybara.register_driver :chrome do |app|
        Capybara::Selenium::Driver.new(app,
                                       browser: :chrome,
-                                      :desired_capabilities  => caps
-                                      # {
-                                      #   :browser_name => 'chrome',
-                                      #   :javascript_enabled => true,
-                                      #   :css_selectors_enabled => true,
-                                      #   :loggingPrefs => {browser: 'ALL',
-                                      #                     driver: 'ALL'},
-                                      #   'chromeOptions' => {
-                                      #     'args' => args
-                                      #   }
-                                      # }
-                                      )
+                                      desired_capabilities: {
+                                        :browser_name => 'chrome',
+                                        :javascript_enabled => true,
+                                        :css_selectors_enabled => true,
+                                        :loggingPrefs => {browser: 'ALL',
+                                                          driver: 'ALL'},
+                                        'chromeOptions' => {
+                                          'args' => args
+                                        }
+                                      })
      end
    end
 
